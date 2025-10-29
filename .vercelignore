@@ -1,0 +1,10 @@
+# Development files
+.git
+.github
+.gitignore
+README.md
+*.log
+
+# Build artifacts that will be generated during deployment
+.next
+node_modules 
