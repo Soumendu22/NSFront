@@ -49,12 +49,16 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     // Fetch additional user data for the new admin dashboard
     try {
-      const userResponse = await fetch(`http://localhost:5000/admin/profile/${data.id}`);
+      const userResponse = await apiRequest(API_URLS.ADMIN_PROFILE(data.id), {
+        method: "GET"
+      });
       if (userResponse.ok) {
         const profileData = await userResponse.json();
 
         // Get organization data
-        const orgResponse = await fetch(`http://localhost:5000/api/organizations`);
+        const orgResponse = await apiRequest(API_URLS.ORGANIZATIONS, {
+          method: "GET"
+        });
         let organizationName = 'Unknown Organization';
 
         if (orgResponse.ok) {

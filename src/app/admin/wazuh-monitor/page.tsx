@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/lib/supabaseClient';
+import { API_URLS, apiRequest } from '@/utils/api';
 
 interface WazuhStats {
   connectedAgents: number;
@@ -92,7 +93,9 @@ export default function WazuhMonitorPage() {
 
       // First try to get data from backend API
       try {
-        const response = await fetch(`http://localhost:5000/admin/profile/${storedUserId}`);
+        const response = await apiRequest(API_URLS.ADMIN_PROFILE(storedUserId), {
+          method: "GET"
+        });
 
         if (response.ok) {
           const profileData = await response.json();

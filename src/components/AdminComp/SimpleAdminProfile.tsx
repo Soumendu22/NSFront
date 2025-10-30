@@ -17,6 +17,7 @@ import {
   Bell,
   RefreshCw
 } from "lucide-react";
+import { API_URLS, apiRequest } from "@/utils/api";
 
 interface AdminData {
   organization_name?: string;
@@ -101,7 +102,9 @@ export default function SimpleAdminProfile() {
     try {
       // First try to get profile data from backend API
       try {
-        const response = await fetch(`http://localhost:5000/admin/profile/${userId}`);
+        const response = await apiRequest(API_URLS.ADMIN_PROFILE(userId), {
+          method: "GET"
+        });
 
         if (response.ok) {
           const profileData = await response.json();

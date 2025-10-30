@@ -191,7 +191,7 @@ const ApprovedUsersPage: React.FC<ApprovedUsersPageProps> = ({ onUpdate, addNoti
   };
 
   const getAgentDownloadLink = (operatingSystem: string, adminIP: string, endpointName: string, intensity: IntensityLevel) => {
-    const baseUrl = 'http://localhost:3000'; // Will be replaced with actual frontend URL later
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000';
     const os = operatingSystem.toLowerCase();
     
     // Generate secure token for URL integrity
